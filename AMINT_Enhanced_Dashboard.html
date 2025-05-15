@@ -1,0 +1,98 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AMINT Token Dashboard</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://unpkg.com/@walletconnect/web3-provider/dist/umd/index.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+  <style>
+    body {
+      background-color: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 20px;
+      text-align: center;
+    }
+    .container {
+      max-width: 900px;
+      margin: auto;
+    }
+    h1 {
+      color: #4caf50;
+    }
+    canvas {
+      margin-top: 20px;
+    }
+    .wallet {
+      margin-top: 30px;
+    }
+    button {
+      background: #4caf50;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    #price {
+      font-size: 28px;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AMINT Token Dashboard</h1>
+    <p>Estimated Asset Value: <strong>$19,000,000+</strong></p>
+    <p id="price">Current AMINT Price: $1.00</p>
+    <canvas id="priceChart" width="800" height="400"></canvas>
+    <div class="wallet">
+      <button id="connectWallet">Connect Wallet</button>
+      <p id="walletAddress"></p>
+    </div>
+  </div>
+
+  <script>
+    // Price Chart Data (Dummy for Now)
+    const ctx = document.getElementById('priceChart').getContext('2d');
+    const priceChart = new Chart(ctx, {
+      type: 'line',
+      data: {
+        labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+        datasets: [{
+          label: 'AMINT Price (USD)',
+          data: [1.00, 1.02, 1.01, 1.05, 1.03, 1.07, 1.00],
+          borderColor: 'rgba(76, 175, 80, 1)',
+          borderWidth: 2,
+          fill: false
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          y: { beginAtZero: false }
+        }
+      }
+    });
+
+    // WalletConnect Setup
+    const provider = new WalletConnectProvider.default({
+      rpc: {
+        1: "https://mainnet.infura.io/v3/00000000000000000000000000000000"
+      }
+    });
+
+    document.getElementById('connectWallet').addEventListener('click', async () => {
+      await provider.enable();
+      const web3 = new Web3(provider);
+      const accounts = await web3.eth.getAccounts();
+      document.getElementById('walletAddress').innerText = "Connected: " + accounts[0];
+    });
+  </script>
+</body>
+</html>
