@@ -1,0 +1,95 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AMINT Token Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        body {
+            background-color: #111;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        .container {
+            max-width: 900px;
+            margin: auto;
+        }
+        h1 {
+            color: #4caf50;
+        }
+        canvas {
+            margin-top: 20px;
+        }
+        .wallet {
+            background: #222;
+            padding: 20px;
+            border-radius: 10px;
+            margin-top: 40px;
+            text-align: left;
+        }
+        .wallet h2 {
+            color: #4caf50;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>AMINT Token Dashboard</h1>
+        <p><strong>Estimated Asset Value:</strong> <span style="color: #4caf50;">$19,000,000+</span></p>
+        <p><strong>Current AMINT Price:</strong> $1.00</p>
+        <canvas id="priceChart" width="400" height="200"></canvas>
+
+        <div class="wallet">
+            <h2>Wallet Verification Panel</h2>
+            <p><strong>Wallet Address:</strong> 0x0EFA...56BC</p>
+            <p><strong>ETH In (30d):</strong> 42.75</p>
+            <p><strong>ETH Out (30d):</strong> 40.10</p>
+            <p><strong>Net Flow:</strong> +2.65 ETH</p>
+            <p><strong>Current Balance:</strong> 0.0147 ETH (~$37.31 USD)</p>
+            <p><strong>Last Updated:</strong> 2025-05-15 21:52:23 UTC</p>
+        </div>
+
+        <a href="https://walletconnect.org/" style="text-decoration: none;">
+            <button style="background-color: #4caf50; color: white; padding: 12px 24px; font-size: 16px; margin-top: 30px; border: none; border-radius: 5px;">
+                Connect Wallet
+            </button>
+        </a>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('priceChart').getContext('2d');
+        const priceChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'AMINT Price (USD)',
+                    data: [1.00, 1.02, 1.01, 1.05, 1.03, 1.07, 1.00],
+                    borderColor: '#4caf50',
+                    backgroundColor: 'transparent',
+                    tension: 0.4
+                }]
+            },
+            options: {
+                scales: {
+                    y: {
+                        beginAtZero: false
+                    }
+                },
+                plugins: {
+                    legend: {
+                        labels: {
+                            color: 'white'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
