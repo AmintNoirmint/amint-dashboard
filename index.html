@@ -1,87 +1,19 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AMINT Token Dashboard</title>
-  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-  <style>
-    body {
-      background-color: #111;
-      color: #fff;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 20px;
-    }
-    h1 {
-      color: #00ffcc;
-    }
-    .chart-container {
-      max-width: 800px;
-      margin: auto;
-    }
-    a {
-      color: #00ffcc;
-      font-weight: bold;
-      text-decoration: none;
-    }
-    #collateral-ledger {
-      background-color: #000;
-      padding: 40px 0;
-      margin-top: 40px;
-    }
-  </style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>AMINT Dashboard</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>Welcome to the AMINT Token Dashboard</h1>
-
-  <div class="chart-container">
-    <canvas id="amintChart"></canvas>
-  </div>
-
-  <script>
-    const ctx = document.getElementById('amintChart').getContext('2d');
-    new Chart(ctx, {
-      type: 'bar',
-      data: {
-        labels: ['ETH', 'DAI', 'USDC', 'BTC'],
-        datasets: [{
-          label: 'Wallet-Backed Collateral ($)',
-          data: [150000000, 80000000, 40000000, 30000000],
-          backgroundColor: ['#00ffcc', '#ffcc00', '#ff6666', '#6699ff']
-        }]
-      },
-      options: {
-        plugins: {
-          legend: {
-            labels: {
-              color: 'white'
-            }
-          }
-        },
-        scales: {
-          x: {
-            ticks: { color: 'white' }
-          },
-          y: {
-            ticks: { color: 'white' }
-          }
-        }
-      }
-    });
-  </script>
-
-  <section id="collateral-ledger">
-    <h2 style="font-size:2em; margin-bottom:20px;">$300 Million in Mirrored Collateral</h2>
-    <p style="max-width:800px; margin:0 auto; font-size:1.1em; line-height:1.6;">
-      As filed and secured under UCC-1, UCC-3, and UCC-11—AMINT Token is backed by a mirrored collateral ledger totaling 
-      <strong>$300,000,000+</strong> in dormant Ethereum and institutional wallets. These assets are listed under 
-      <strong>NOIRMINT INC TRUST</strong> and verifiable via public filing IDs and blockchain confirmations.
-    </p>
-    <br>
-    <a href="https://amint.live/UCC-Collateral.pdf" style="display:inline-block; padding:10px 20px; background-color:#00ffcc; color:#000; border-radius:5px;">
-      View UCC Ledger Filings
-    </a>
-  </section>
+    <div class="container">
+        <h1>AMINT Token Dashboard</h1>
+        <div id="wallet-value">Loading wallet value...</div>
+        <div id="token-stats">Fetching token stats...</div>
+        <div id="trust-ownership">Verifying NOIRMINT INC TRUST...</div>
+    </div>
+    <script src="dashboard.js"></script>
 </body>
 </html>
